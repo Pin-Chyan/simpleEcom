@@ -1,0 +1,32 @@
+extends layout
+
+block content 
+    .container
+        .h-container
+            .d-flex.bd-highlight.column.mt-5
+                .p-2.flex-fill.bd-highlight.alignment
+                    h1 #{title}
+                .p-2.flex.bd-highlight.alignment
+                    .input-group.md-form.form-sm.form-2.pl-0
+                        input.form-control.search(type='text' placeholder='Search Deals By Name' aria-label='Search')
+                        .input-group-append
+                            button.input-group-text.bg-white
+                                i.fa.fa-search.text-grey(aria-hidden='true')
+
+        .f-container.mt-5
+            .dropdown
+                button.dropbtn.btn.btn-light.filter(onclick='toggleFilter()') Filter
+                    i#arrow.fa.fa-arrow-down.icon-filter
+            #filter.custom-control.custom-checkbox.mt-4
+                input#customCheck.custom-control-input(type='checkbox')
+                label.custom-control-label(for='customCheck') On Sale
+                hr.mt-5
+
+        .i-container.i-flex
+            each item, i in items
+                .p-2.flex-fill.bd-highlight.w-33.mt-5
+                    h5 #{item.title}
+                    p
+                        span.line-through &#36;#{item.price}.00
+                        |  &#36;#{item.discount}.00
+                    a.btn.btn-outline-dark(href="/detail") View More
