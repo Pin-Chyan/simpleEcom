@@ -5,45 +5,52 @@ block content
         .s-container 
             .d-flex.bd-highlight.mt-5.column
                 .p-2.flex-fill.bd-highlight.w-55
-                    h3 #{game}
-                    p.p-2
-                        span.line-through &#36;#{price}.00
-                        |  &#36;#{discount}.00
-                        span.float-right You save {#{price} - #{discount}}
-                    h4.p-4 Available at #{store}
-                        img.g-image.mt-4(src=img alt="")
+                    each game, i in games
+                        if game.storeID === storeID
+                            h3 #{info.title}
+                            p.p-2
+                                span.line-through #{game.retailPrice}
+                                |  &#36;#{game.price}
+                                span.float-right You save #{game.savings}
+                            each store in stores
+                                if store.storeID === storeID
+                                    h4.p-4.bord-shadow Available at #{store.storeName}
+                                    img.g-image.mt-4(src=info.thumb alt="")
 
                 .p-3.flex-fill.bd-highlight
-                    h4 Other deals for this game
-                    .d-flex.flex-column.bd-highlight
-                        .d-flex.bd-highlight
-                            .p-2.flex-fill.bd-highlight
-                                h6 Steam
-                                p
-                                    span.line-through $60.00
-                                    |  $20.00
-                            .p-2.align-self-center.bd-highlight
-                                button.btn.btn-outline-dark(type='button') View More
+                    h4.d-bord-shadow Other deals for this game
+                    each game, i in games
+                        .d-flex.flex-column.bd-highlight
+                            .d-flex.bd-highlight
+                                each store in stores 
+                                    if store.storeID == game.storeID && game.savings != 0 && game.storeID != storeID
+                                        .p-2.flex-fill.bd-highlight
+                                            h6 #{store.storeName}
+                                                p
+                                                    span.line-through &#36;#{game.retailPrice}
+                                                    |  &#36;#{game.price}
+                                        .p-2.align-self-center.bd-highlight
+                                            a.btn.btn-outline-dark(href="/detail?gameID="+ gameID + "&storeID=" + game.storeID) View More
 
-                    .d-flex.flex-column.bd-highlight
-                        .d-flex.bd-highlight
-                            .p-2.flex-fill.bd-highlight
-                                h6 IndieGala
-                                p
-                                    span.line-through $60.00
-                                    |  $20.00
-                            .p-2.align-self-center.bd-highlight
-                                button.btn.btn-outline-dark(type='button') View More
+                    //- .d-flex.flex-column.bd-highlight
+                    //-     .d-flex.bd-highlight
+                    //-         .p-2.flex-fill.bd-highlight
+                    //-             h6 IndieGala
+                    //-             p
+                    //-                 span.line-through $60.00
+                    //-                 |  $20.00
+                    //-         .p-2.align-self-center.bd-highlight
+                    //-             button.btn.btn-outline-dark(type='button') View More
 
-                    .d-flex.flex-column.bd-highlight
-                        .d-flex.bd-highlight
-                            .p-2.flex-fill.bd-highlight
-                                h6 2Games
-                                p
-                                    span.line-through $60.00
-                                    |  $20.00
-                            .p-2.align-self-center.bd-highlight
-                                button.btn.btn-outline-dark(type='button') View More
+                    //- .d-flex.flex-column.bd-highlight
+                    //-     .d-flex.bd-highlight
+                    //-         .p-2.flex-fill.bd-highlight
+                    //-             h6 2Games
+                    //-             p
+                    //-                 span.line-through $60.00
+                    //-                 |  $20.00
+                    //-         .p-2.align-self-center.bd-highlight
+                    //-             button.btn.btn-outline-dark(type='button') View More
 
 
 

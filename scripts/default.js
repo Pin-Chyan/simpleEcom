@@ -1,3 +1,7 @@
+// const axios = require('axios');
+
+// const { default: axios } = require("axios");
+
 function toggleFilter() {
     var filterBlock = document.getElementById("filter");
     var arrow = document.getElementById('arrow');
@@ -12,4 +16,45 @@ function toggleFilter() {
         arrow.classList.remove("fa-arrow-down");
         arrow.classList.add("fa-arrow-up");
     }
+}
+
+async function search() {
+    var items = document.getElementById("items");
+    var message = document.getElementById("searchInput").value;
+    var i = 0;
+
+    const games = await axios.get("https://www.cheapshark.com/api/1.0/games?title=" + message);
+    console.log(message);
+    console.log(games.data);
+    items.innerHTML = "";
+
+    console.log(games.data.length);
+    while(i < games.data.length && i <= 99) {
+        var storeID = 0;
+        const store = await axios.get(`https://www.cheapshark.com/api/1.0/games?id=${games.data[i].gameID}`)
+        // console.log(store.data.deals);
+
+        store.data.deals.forEach(game => {
+            // console.log(game.price);
+            // console.log(games.data[i].cheapest);
+            if (game.price == games.data[i].cheapest)
+                storeID = game.storeID;
+        });
+
+        console.log(storeID);
+        items.innerHTML += `<div class=\"p-2 flex-fill bd-highlight w-33 mt-5 bord-shadow\"><h5 class=\"text-overflow\">${games.data[i].external}</h5><p>&#36;${games.data[i].cheapest}</p><a class=\"btn btn-outline-dark\" href=\"/detail?gameID=${games.data[i].gameID}&amp;storeID=${storeID}\">View More</a></div>`;
+        
+        i++;
+    }
+
+    // games.data.forEach(game => {
+    //     const store = await axios.get(`https://www.cheapshark.com/api/1.0/games?id=${game.gameID}`)
+    //     items.innerHTML += `<div class=\"p-2 flex-fill bd-highlight w-33 mt-5 bord-shadow\"><h5 class=\"text-overflow\">${game.external}</h5><p><span class=\"line-through\">$39.99</span> $3.99</p><a class=\"btn btn-outline-dark\" href=\"/detail?gameID=135790&amp;storeID=1\">View More</a></div>`;
+        
+    //     console.log(store);
+    // });
+}
+
+function onsale() {
+    
 }
