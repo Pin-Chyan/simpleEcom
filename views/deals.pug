@@ -18,15 +18,23 @@ block content
                 button.dropbtn.btn.btn-light.filter(onclick='toggleFilter()') Filter
                     i#arrow.fa.fa-arrow-down.icon-filter
             #filter.custom-control.custom-checkbox.mt-4
-                input#onsaleCheck.custom-control-input(type='checkbox' onchange="onsale()")
+                input#customCheck.custom-control-input(type='checkbox' onclick="onsale()")
                 label.custom-control-label.m-filter(for='customCheck') On Sale
                 hr.mt-5
 
         #items.i-container.i-flex
             each item, i in items
-                .p-2.flex-fill.bd-highlight.w-33.mt-5.bord-shadow
-                    h5.text-overflow #{item.title}
-                    p
-                        span.line-through &#36;#{item.normalPrice}
-                        |  &#36;#{item.salePrice}
-                    a.btn.btn-outline-dark(href="/detail?gameID="+ item.gameID + "&storeID=" + item.storeID) View More
+                if (item.savings != 0)
+                    .p-2.flex-fill.bd-highlight.w-33.mt-5.bord-shadow.sale(id="game" + i)
+                        h5.text-overflow #{item.title}
+                        p
+                            span.line-through &#36;#{item.normalPrice}
+                            span  &#36;#{item.salePrice}
+                        a.btn.btn-outline-dark(href="/detail?gameID="+ item.gameID + "&storeID=" + item.storeID) View More
+                else
+                    .p-2.flex-fill.bd-highlight.w-33.mt-5.bord-shadow.nosale(id="game" + i)
+                        h5.text-overflow #{item.title}
+                        p
+                            span.line-through &#36;#{item.normalPrice}
+                            span  &#36;#{item.salePrice}
+                        a.btn.btn-outline-dark(href="/detail?gameID="+ item.gameID + "&storeID=" + item.storeID) View More

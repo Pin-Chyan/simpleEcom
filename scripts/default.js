@@ -24,13 +24,14 @@ async function search() {
     var i = 0;
 
     const games = await axios.get("https://www.cheapshark.com/api/1.0/games?title=" + message);
-    console.log(message);
-    console.log(games.data);
+    // console.log(message);
+    // console.log(games.data);
     items.innerHTML = "";
 
-    console.log(games.data.length);
+    // console.log(games.data.length);
     while(i < games.data.length && i <= 99) {
         var storeID = 0;
+        var ogPrice = 0;
         const store = await axios.get(`https://www.cheapshark.com/api/1.0/games?id=${games.data[i].gameID}`)
         // console.log(store.data.deals);
 
@@ -39,10 +40,17 @@ async function search() {
             // console.log(games.data[i].cheapest);
             if (game.price == games.data[i].cheapest)
                 storeID = game.storeID;
+                ogPrice = game.retailPrice;
         });
 
-        console.log(storeID);
-        items.innerHTML += `<div class=\"p-2 flex-fill bd-highlight w-33 mt-5 bord-shadow\"><h5 class=\"text-overflow\">${games.data[i].external}</h5><p>&#36;${games.data[i].cheapest}</p><a class=\"btn btn-outline-dark\" href=\"/detail?gameID=${games.data[i].gameID}&amp;storeID=${storeID}\">View More</a></div>`;
+        // console.log(storeID);
+        // items.innerHTML += `<div class="p-2 flex-fill bd-highlight w-33 mt-5 bord-shadow"><h5 class="text-overflow">Brothers: A Tale of Two Sons</h5><p><span class="line-through">$14.99</span> $2.99</p><a class="btn btn-outline-dark" href="/detail?gameID=101447&amp;storeID=1">View More</a></div>`;
+        if (ogPrice > games.data[i].cheapest) {
+            items.innerHTML += `<div class=\"p-2 flex-fill bd-highlight w-33 mt-5 bord-shadow sale\"><h5 class=\"text-overflow\">${games.data[i].external}</h5><p><span class="line-through">&#36;${ogPrice}</span><span> &#36;${games.data[i].cheapest}</span></p><a class=\"btn btn-outline-dark\" href=\"/detail?gameID=${games.data[i].gameID}&amp;storeID=${storeID}\">View More</a></div>`;
+        } else {
+            items.innerHTML += `<div class=\"p-2 flex-fill bd-highlight w-33 mt-5 bord-shadow nosale\"><h5 class=\"text-overflow\">${games.data[i].external}</h5><p><span> &#36;${games.data[i].cheapest}</span></p><a class=\"btn btn-outline-dark\" href=\"/detail?gameID=${games.data[i].gameID}&amp;storeID=${storeID}\">View More</a></div>`;
+        }
+
         
         i++;
     }
@@ -56,5 +64,17 @@ async function search() {
 }
 
 function onsale() {
+    const onsale = document.getElementById("customCheck");
+    // const saleOnly = document.getElementsByClassName("sale");
+    const noSaleOnly = document.getElementsByClassName("nosale");
     
+    
+    if (onsale.checked)
+    {
+        document.documentElement.style.setProperty("--is-on-sale", "none", "important");
+        console.log("checked");
+    } else {
+        document.documentElement.style.setProperty("--is-on-sale", "block", "important");
+        console.log("unchecked");
+    }
 }
