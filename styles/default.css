@@ -1,6 +1,6 @@
-:root {
+/* :root {
     --is-on-sale: block !important;
-}
+} */
 
 .nosale {
     display:  var(--is-on-sale);
@@ -136,7 +136,7 @@ a:hover {
 
 @media only screen and (max-width: 767px)  {
     .navbar-brand {
-        margin: 0 !important;
+        margin: auto !important;
     }
 
     .h-mobile {
@@ -170,6 +170,7 @@ a:hover {
     }
 
     .w-33 {
+        max-width: 100%;
         width: 100%;
     }
     

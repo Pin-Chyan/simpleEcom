@@ -7,10 +7,10 @@ block content
                 .p-2.flex-fill.bd-highlight.w-55
                     each game, i in games
                         if game.storeID === storeID
-                            h3 #{info.title}
+                            h3(id="game-title") #{info.title}
                             p.p-2
-                                span.line-through #{game.retailPrice}
-                                |  &#36;#{game.price}
+                                span.line-through(id="retailPrice") &#36;#{game.retailPrice}
+                                span.text-success(id="savingPrice")  &#36;#{game.price}
                                 span.float-right You save #{game.savings}
                             each store in stores
                                 if store.storeID === storeID

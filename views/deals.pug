@@ -10,7 +10,7 @@ block content
                     .input-group.md-form.form-sm.form-2.pl-0
                         input#searchInput.form-control.search(type='text' placeholder='Search Deals By Name' aria-label='Search' onchange="search()")
                         .input-group-append
-                            button.input-group-text.bg-white(onclick="search()")
+                            button#searchBtn.input-group-text.bg-white(onclick="search()")
                                 i.fa.fa-search.text-grey(aria-hidden='true')
 
         .f-container.mt-5
@@ -26,15 +26,15 @@ block content
             each item, i in items
                 if (item.savings != 0)
                     .p-2.flex-fill.bd-highlight.w-33.mt-5.bord-shadow.sale(id="game" + i)
-                        h5.text-overflow #{item.title}
+                        h5.text-overflow(id="item-" + i) #{item.title}
                         p
                             span.line-through &#36;#{item.normalPrice}
-                            span  &#36;#{item.salePrice}
+                            span.text-success  &#36;#{item.salePrice}
                         a.btn.btn-outline-dark(href="/detail?gameID="+ item.gameID + "&storeID=" + item.storeID) View More
                 else
                     .p-2.flex-fill.bd-highlight.w-33.mt-5.bord-shadow.nosale(id="game" + i)
                         h5.text-overflow #{item.title}
                         p
-                            span.line-through &#36;#{item.normalPrice}
-                            span  &#36;#{item.salePrice}
+                            span.line-through.text-success &#36;#{item.normalPrice}
+                            //- span  &#36;#{item.salePrice}
                         a.btn.btn-outline-dark(href="/detail?gameID="+ item.gameID + "&storeID=" + item.storeID) View More

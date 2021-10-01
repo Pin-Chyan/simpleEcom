@@ -46,9 +46,9 @@ async function search() {
         // console.log(storeID);
         // items.innerHTML += `<div class="p-2 flex-fill bd-highlight w-33 mt-5 bord-shadow"><h5 class="text-overflow">Brothers: A Tale of Two Sons</h5><p><span class="line-through">$14.99</span> $2.99</p><a class="btn btn-outline-dark" href="/detail?gameID=101447&amp;storeID=1">View More</a></div>`;
         if (ogPrice > games.data[i].cheapest) {
-            items.innerHTML += `<div class=\"p-2 flex-fill bd-highlight w-33 mt-5 bord-shadow sale\"><h5 class=\"text-overflow\">${games.data[i].external}</h5><p><span class="line-through">&#36;${ogPrice}</span><span> &#36;${games.data[i].cheapest}</span></p><a class=\"btn btn-outline-dark\" href=\"/detail?gameID=${games.data[i].gameID}&amp;storeID=${storeID}\">View More</a></div>`;
+            items.innerHTML += `<div class=\"p-2 flex-fill bd-highlight w-33 mt-5 bord-shadow sale\"><h5 id=\"item-${i}\" class=\"text-overflow\">${games.data[i].external}</h5><p><span class="line-through">&#36;${ogPrice}</span><span class="text-success"> &#36;${games.data[i].cheapest}</span></p><a class=\"btn btn-outline-dark\" href=\"/detail?gameID=${games.data[i].gameID}&amp;storeID=${storeID}\">View More</a></div>`;
         } else {
-            items.innerHTML += `<div class=\"p-2 flex-fill bd-highlight w-33 mt-5 bord-shadow nosale\"><h5 class=\"text-overflow\">${games.data[i].external}</h5><p><span> &#36;${games.data[i].cheapest}</span></p><a class=\"btn btn-outline-dark\" href=\"/detail?gameID=${games.data[i].gameID}&amp;storeID=${storeID}\">View More</a></div>`;
+            items.innerHTML += `<div class=\"p-2 flex-fill bd-highlight w-33 mt-5 bord-shadow nosale\"><h5 id=\"item-${i}\" class=\"text-overflow\">${games.data[i].external}</h5><p><span class="text-success"> &#36;${games.data[i].cheapest}</span></p><a class=\"btn btn-outline-dark\" href=\"/detail?gameID=${games.data[i].gameID}&amp;storeID=${storeID}\">View More</a></div>`;
         }
 
         
@@ -77,4 +77,8 @@ function onsale() {
         document.documentElement.style.setProperty("--is-on-sale", "block", "important");
         console.log("unchecked");
     }
+}
+
+function discounted() {
+    const 
 }
