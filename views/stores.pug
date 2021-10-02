@@ -1,0 +1,26 @@
+extends layout
+
+block content 
+    .container
+        .h-container
+            .d-flex.bd-highlight.column.mt-5
+                .p-2.flex-fill.bd-highlight.alignment
+                    h1 #{title}
+                .p-2.flex.bd-highlight.alignment
+                    .input-group.md-form.form-sm.form-2.pl-0
+                        input#searchInput.form-control.search(type='text' placeholder='Search Deals By Name' aria-label='Search' onchange="search()")
+                        .input-group-append
+                            button#searchBtn.input-group-text.bg-white(onclick="search()")
+                                i.fa.fa-search.text-grey(aria-hidden='true')
+
+        #items.i-container.i-flex
+            each store, i in stores
+                .p-2.flex-fill.bd-highlight.w-33.mt-5.bord-shadow(id=store.storeID)
+                    //- each image in images
+                    img(src="https://www.cheapshark.com" + store.images.logo , alt="alt")
+                    h5.text-overflow #{store.storeName}
+                    p
+                        span #{store.deals.length}
+                    a.btn.btn-outline-dark(href="#") View More
+
+

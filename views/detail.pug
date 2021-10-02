@@ -11,7 +11,7 @@ block content
                             p.p-2
                                 span.line-through(id="retailPrice") &#36;#{game.retailPrice}
                                 span.text-success(id="savingPrice")  &#36;#{game.price}
-                                span.float-right You save #{game.savings}
+                                span.float-right(id="discountedPrice" onload="discounted()") #{game.savings}
                             each store in stores
                                 if store.storeID === storeID
                                     h4.p-4.bord-shadow Available at #{store.storeName}
@@ -32,25 +32,5 @@ block content
                                         .p-2.align-self-center.bd-highlight
                                             a.btn.btn-outline-dark(href="/detail?gameID="+ gameID + "&storeID=" + game.storeID) View More
 
-                    //- .d-flex.flex-column.bd-highlight
-                    //-     .d-flex.bd-highlight
-                    //-         .p-2.flex-fill.bd-highlight
-                    //-             h6 IndieGala
-                    //-             p
-                    //-                 span.line-through $60.00
-                    //-                 |  $20.00
-                    //-         .p-2.align-self-center.bd-highlight
-                    //-             button.btn.btn-outline-dark(type='button') View More
-
-                    //- .d-flex.flex-column.bd-highlight
-                    //-     .d-flex.bd-highlight
-                    //-         .p-2.flex-fill.bd-highlight
-                    //-             h6 2Games
-                    //-             p
-                    //-                 span.line-through $60.00
-                    //-                 |  $20.00
-                    //-         .p-2.align-self-center.bd-highlight
-                    //-             button.btn.btn-outline-dark(type='button') View More
-
-
-
+    script
+        include ../scripts/detail.js

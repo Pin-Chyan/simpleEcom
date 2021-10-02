@@ -18,6 +18,10 @@ body {
     object-fit: cover
 }
 
+.navbar-brand-m {
+    margin: inherit;
+}
+
 /* content */
 
 .bg-white {
@@ -135,7 +139,7 @@ a:hover {
 /* media (mobile compatible) */
 
 @media only screen and (max-width: 767px)  {
-    .navbar-brand {
+    .navbar-brand-m {
         margin: auto !important;
     }
 

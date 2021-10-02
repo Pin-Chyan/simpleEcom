@@ -50,7 +50,6 @@ async function search() {
         } else {
             items.innerHTML += `<div class=\"p-2 flex-fill bd-highlight w-33 mt-5 bord-shadow nosale\"><h5 id=\"item-${i}\" class=\"text-overflow\">${games.data[i].external}</h5><p><span class="text-success"> &#36;${games.data[i].cheapest}</span></p><a class=\"btn btn-outline-dark\" href=\"/detail?gameID=${games.data[i].gameID}&amp;storeID=${storeID}\">View More</a></div>`;
         }
-
         
         i++;
     }
@@ -79,6 +78,11 @@ function onsale() {
     }
 }
 
-function discounted() {
-    const 
-}
+// function discounted() {
+
+// }
+
+window.addEventListener("load", function(){
+    const discount = document.getElementById("deal");
+    
+});

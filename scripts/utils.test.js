@@ -30,15 +30,15 @@ test('Deals Page Check, First Three Content', async() => {
 
     const item0 = await page.$eval('#item-0', el => el.textContent);
     // console.log(item0);
-    expect(item0).toBe('The Talos Principle');
+    expect(item0).toBe('HoPiKo');
 
     const item1 = await page.$eval('#item-1', el => el.textContent);
     // console.log(item1);
-    expect(item1).toBe('Brothers: A Tale of Two Sons');
+    expect(item1).toBe('The Talos Principle');
 
     const item2 = await page.$eval('#item-2', el => el.textContent);
     // console.log(item2);
-    expect(item2).toBe('Down in Bermuda');
+    expect(item2).toBe('Candle');
 }, 10000);
 
 // 
